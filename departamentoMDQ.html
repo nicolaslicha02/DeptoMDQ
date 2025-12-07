@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Lugar en Mar del Plata</title>
+    <!-- Usamos una fuente moderna y elegante de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de colores renovada, más fresca y moderna */
+        :root {
+            --primary-color: #005f73; /* Azul petróleo elegante */
+            --secondary-color: #0a9396; /* Turquesa vibrante */
+            --accent-color: #e9d8a6; /* Beige arena suave */
+            --text-dark: #22223b; /* Texto oscuro casi negro */
+            --text-light: #fefae0; /* Texto claro */
+            --bg-light: #f8f9fa; /* Fondo gris muy claro */
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header Hero con imagen de fondo y degradado */
+        header {
+            /* IMPORTANTE: Para que las fotos se vean, este archivo HTML debe estar en la MISMA CARPETA que tus imágenes en el escritorio. */
+            background: linear-gradient(rgba(0, 95, 115, 0.7), rgba(10, 147, 150, 0.7)), url('living1.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 75vh;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Subtítulo estilo etiqueta */
+        .subtitle-badge {
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contenedor principal centrado */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Grid de tarjetas de características (flotante) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin-top: -100px; /* Efecto flotante sobre el header */
+            padding-bottom: 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 35px 25px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-bottom: 5px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+            color: var(--secondary-color);
+        }
+
+        .feature-card h3 {
+            margin: 15px 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Sección de descripción de dos columnas */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin: 100px 0;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .about-text h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 80px;
+            height: 5px;
+            background-color: var(--accent-color);
+            border-radius: 5px;
+        }
+
+        .highlight-text {
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+        
+        .benefits-list li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefits-list li::before {
+            content: '✓';
+            display: inline-block;
+            margin-right: 15px;
+            color: var(--white);
+            background-color: var(--secondary-color);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .about-img {
+            position: relative;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            object-fit: cover;
+            height: 500px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .about-img::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            background-color: var(--accent-color);
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Galería de imágenes tipo masonry moderno */
+        .gallery-section {
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 300px;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Botón de WhatsApp flotante y llamativo */
+        .cta-container {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 60px;
+            background-color: var(--primary-color);
+            border-radius: 40px;
+            color: var(--white);
+            box-shadow: 0 20px 50px rgba(0,95,115,0.3);
+        }
+
+        .cta-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--white);
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366; /* Verde WhatsApp */
+            color: white;
+            text-decoration: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-icon {
+            margin-right: 15px;
+            font-size: 2.2rem;
+        }
+
+        /* Footer simple */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--primary-color);
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Adaptabilidad para dispositivos móviles */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            header { height: auto; padding: 100px 20px 150px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; }
+            .subtitle-badge { font-size: 1rem; padding: 10px 20px; }
+            .features-grid { margin-top: -80px; gap: 20px; }
+            .about-section { grid-template-columns: 1fr; gap: 40px; margin: 60px 0; text-align: center; }
+            .about-text h2::before { left: 50%; transform: translateX(-50%); }
+            .benefits-list li { justify-content: center; }
+            .about-img img { height: 400px; }
+            .cta-container { padding: 40px 20px; }
+            .cta-container h2 { font-size: 1.8rem; }
+            .whatsapp-btn { font-size: 1.1rem; padding: 15px 30px; width: 100%; justify-content: center; box-sizing: border-box;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PORTADA HERO -->
+    <header>
+        <h1>Tu Verano Soñado en Mar del Plata</h1>
+        <div class="subtitle-badge">Peatonal San Martín · A 250m de la Playa</div>
+    </header>
+
+    <div class="container">
+        
+        <!-- CARACTERÍSTICAS PRINCIPALES (Tarjetas Flotantes) -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="card-icon">📶</span>
+                <h3>WIFI</h3>
+                <p>Conexión para estar siempre en línea.</p>
+            </div>
+            <div class="feature-card">
+                <span class="card-icon">👨‍👩‍👧‍👦</span>
+                <h3>Capacidad Ideal</h3>
+                <p>Cómodo para 4 adultos y 2 niños.</p>
+            </div>
+            <div class="feature-card">
+                <span class="card-icon">📍</span>
+                <h3>Ubicación</h3>
+                <p>En plena Peatonal San Martin, todo cerca.</p>
+            </div>
+            <div class="feature-card">
+                <span class="card-icon">🍳</span>
+                <h3>Cocina Completa</h3>
+                <p>Cuenta con cocina completa para que puedas desayunar, almorzar o cenar como en casa.</p>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE DESCRIPCIÓN -->
+        <section class="about-section">
+            <div class="about-text">
+                <h2>Comodidad y Estilo a Pasos del Mar</h2>
+                <p>Disfrutá de unas vacaciones inolvidables en este departamento estratégicamente ubicado. Olvidate del auto y caminá solo <span class="highlight-text">250 metros</span> hasta la playa.</p>
+                <p>Ubicado directamente sobre la <strong>Peatonal San Martín</strong>, tendrás acceso inmediato a comercios, restaurantes y teatros. El departamento es <span class="highlight-text">cómodo para 4 adultos y 2 niños</span>, moderno y cuenta con todas las comodidades para una estadía perfecta.</p>
+                <ul class="benefits-list">
+                    <li>Smart TV</li>
+                    <li>Baño completo.</li>
+                    <li>Espacios bien distribuidos y funcionales.</li>
+                    <li>Seguridad y tranquilidad en pleno centro.</li>
+                </ul>
+            </div>
+            <div class="about-img">
+                <!-- Usamos la foto del dormitorio -->
+                <img src="dormitorio.jpeg" alt="Dormitorio principal confortable">
+            </div>
+        </section>
+
+        <!-- GALERÍA DE IMÁGENES -->
+        <section class="gallery-section">
+            <h2 class="section-title">Conocé tu Próximo Destino</h2>
+            <div class="gallery-grid">
+                <!-- IMPORTANTE: Asegurate que estos nombres de archivo coincidan con los que tenés en tu escritorio -->
+                <div class="gallery-item"><img src="cocina.jpeg" alt="Cocina equipada"></div>
+                <div class="gallery-item"><img src="living2.jpeg" alt="Vista del living comedor"></div>
+                <div class="gallery-item"><img src="baño.jpeg" alt="Baño completo"></div>
+                <div class="gallery-item"><img src="WhatsApp Image 2025-12-07 at 12.28.30.jpeg" alt="Otra vista del departamento"></div>
+                <div class="gallery-item"><img src="WhatsApp Image 2025-12-07 at 12.28.31.jpeg" alt="Detalle de la habitación"></div>
+                <div class="gallery-item"><img src="WhatsApp Image 2025-12-07 at 12.28.29.jpeg" alt="Espacio de comedor diario"></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE LLAMADA A LA ACCIÓN (Whatsapp) -->
+        <div class="cta-container">
+            <h2>¡Reservá tu estadía hoy mismo!</h2>
+            <p style="color: var(--text-light); margin-bottom: 30px; font-size: 1.2rem;">Trato directo con el dueño, sin comisiones.</p>
+            <a href="https://wa.me/5492245402684" class="whatsapp-btn" target="_blank">
+                <span class="whatsapp-icon">📲</span> Consultar Disponibilidad
+            </a>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 Alquiler Temporada Mar del Plata. Disfrutá tu verano.</p>
+    </footer>
+
+</body>
+</html>
